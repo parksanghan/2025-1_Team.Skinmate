@@ -1,0 +1,5 @@
+.vs/
+
+# Server 내부 폴더 무시
+Server/venv/
+Server/__pycache__/

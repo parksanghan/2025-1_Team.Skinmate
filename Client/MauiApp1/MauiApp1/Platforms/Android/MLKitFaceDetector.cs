@@ -1,0 +1,14 @@
+﻿using AndroidX.Camera.Camera2.InterOp;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MauiApp1.Platforms.Android
+{
+    class MLKitFaceDetector
+    {
+       
+    }
+}

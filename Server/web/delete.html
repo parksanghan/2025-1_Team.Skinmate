@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>SKINMATE 계정 삭제</title>
+</head>
+<body>
+    <h2>SKINMATE 계정 삭제 요청</h2>
+    <p>아래에 삭제하고자 하는 계정 ID를 입력해주세요.</p>
+
+    <input type="text" id="userId" placeholder="예: testuser123">
+    <button onclick="deleteAccount()">삭제 요청</button>
+
+    <p id="result"></p>
+
+    <script>
+        async function deleteAccount() {
+            const userId = document.getElementById("userId").value;
+            const resultElem = document.getElementById("result");
+
+            if (!userId) {
+                resultElem.innerText = "❌ ID를 입력해주세요.";
+                return;
+            }
+
+            try {
+                const response = await fetch(`/delete/skinmate/${userId}`, {
+                    method: "DELETE"
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    resultElem.innerText = `✅ ${data.msg}`;
+                } else {
+                    const err = await response.json();
+                    resultElem.innerText = `❌ 삭제 실패: ${err.detail || response.statusText}`;
+                }
+            } catch (err) {
+                resultElem.innerText = `❌ 요청 중 오류 발생: ${err}`;
+            }
+        }
+    </script>
+</body>
+</html>

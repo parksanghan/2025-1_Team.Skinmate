@@ -1,0 +1,52 @@
+<toolkit:Popup
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Class="MauiApp1.Views.Content.ResultPopup">
+
+    <!-- 어두운 배경 테마 -->
+    <Border
+        BackgroundColor="#2C2C2C"
+        Stroke="#444"
+        StrokeThickness="1"
+        Padding="20"
+        WidthRequest="300"
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+       >
+
+        <VerticalStackLayout Spacing="15">
+            <Label
+                Text="진단이 완료되었습니다."
+                FontSize="20"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                TextColor="White" />
+
+            <Button
+                Text="결과 분석"
+                Clicked="OnAnalyzeClicked"
+                BackgroundColor="#C5A9F8"
+                TextColor="Black"
+                CornerRadius="15"
+                HeightRequest="45" />
+
+            <Button
+                Text="챗봇 이동"
+                Clicked="OnChatbotClicked"
+                BackgroundColor="#C5A9F8"
+                TextColor="Black"
+                CornerRadius="15"
+                HeightRequest="45" />
+
+            <Button
+                Text="취소"
+                Clicked="OnCancelClicked"
+                BackgroundColor="#888888"
+                TextColor="White"
+                CornerRadius="15"
+                HeightRequest="45" />
+        </VerticalStackLayout>
+
+    </Border>
+</toolkit:Popup>

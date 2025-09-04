@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Class="MauiApp1.Views.Content.UserInfoPopup">
+
+    <!-- 어두운 배경 -->
+    <Grid BackgroundColor="#80000000">
+
+        <!-- 팝업 본체 -->
+        <VerticalStackLayout
+            Padding="20"
+            BackgroundColor="Gray"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            WidthRequest="300"
+            Spacing="16"
+           >
+
+            <Label Text="성별을 선택하세요" FontSize="16" HorizontalOptions="Center" TextColor="White"/>
+
+            <HorizontalStackLayout x:Name="GenderContainer" Spacing="10" HorizontalOptions="Center"/>
+
+
+            <Picker 
+                x:Name="AgePicker"
+                Title="나이 선택"
+                HorizontalOptions="Fill"
+                TextColor="Black"
+                BackgroundColor="White"/>
+            <VerticalStackLayout x:Name="AgeContainer" Spacing="8" />
+
+            <Button Text="확인" Clicked="OnConfirmClicked" BackgroundColor="LightBlue" />
+
+        </VerticalStackLayout>
+    </Grid>
+</toolkit:Popup>

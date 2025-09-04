@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>TMAP 피부과 검색</title>
+  <script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=KnFx41yOtZRY1W20nnmw6SN1ERZqY396ZkH3TOQ4"></script>
+  <style>
+    .custom-marker {
+      position: relative;
+      display: inline-block;
+      background-color: #ffffff;
+      border: 2px solid #4285f4;
+      border-radius: 16px;
+      padding: 5px 10px;
+      font-size: 13px;
+      color: black;
+      white-space: nowrap;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .custom-marker::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      margin-left: -6px;
+      border-width: 6px;
+      border-style: solid;
+      border-color: #4285f4 transparent transparent transparent;
+    }
+
+    .custom-marker::before {
+      content: "";
+      position: absolute;
+      bottom: -9px;
+      left: 50%;
+      margin-left: -6px;
+      border-width: 6px;
+      border-style: solid;
+      border-color: #ffffff transparent transparent transparent;
+      z-index: 1;
+    }
+
+    .popup-content {
+      background: white;
+      border: 1px solid #ccc;
+      padding: 10px;
+      width: 250px;
+      font-size: 13px;
+      z-index: 9999;
+      position: relative;
+    }
+
+    .popup-content button {
+      margin-top: 10px;
+      float: right;
+      background: #4285f4;
+      color: white;
+      border: none;
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2 style="text-align:center;">내 주변 피부과 찾기</h2>
+  <div id="map_div" style="width: 100%; height: 500px;"></div>
+
+  <script>
+    function getQueryParam(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return parseFloat(urlParams.get(name));
+    }
+
+    const lat = getQueryParam("lat") || 37.5665;
+    const lon = getQueryParam("lon") || 126.9780;
+
+    const map = new Tmapv2.Map("map_div", {
+      center: new Tmapv2.LatLng(lat, lon),
+      width: "100%",
+      height: "500px",
+      zoom: 15,
+      zIndexInfoWindow: 11
+    });
+
+    new Tmapv2.Marker({
+      position: new Tmapv2.LatLng(lat, lon),
+      iconHTML: `<div class="custom-marker" style="border-color:#ff3b30;color:#ff3b30;">내 위치</div>`,
+      map: map
+    });
+
+    let currentInfoWindow = null;
+
+    async function searchClinics() {
+      const keyword = encodeURIComponent("피부과");
+      const url = `https://apis.openapi.sk.com/tmap/pois?version=1&searchKeyword=${keyword}&searchType=all&searchtypCd=R&page=1&count=30&reqCoordType=WGS84GEO&resCoordType=WGS84GEO&centerLon=${lon}&centerLat=${lat}&radius=5`;
+
+      try {
+        const response = await fetch(url, {
+          method: "GET",
+          headers: {
+            "Accept": "application/json",
+            "appKey": "KnFx41yOtZRY1W20nnmw6SN1ERZqY396ZkH3TOQ4"
+          }
+        });
+
+        if (!response.ok) throw new Error(`API 호출 실패: ${response.status}`);
+        const data = await response.json();
+        const pois = data.searchPoiInfo?.pois?.poi || [];
+
+        pois.forEach((poi, index) => {
+          if (poi.detailBizName !== "피부과") return;
+          if (poi.name.includes("주차장")) return;
+
+          const name = poi.name;
+          const lat = parseFloat(poi.frontLat);
+          const lon = parseFloat(poi.frontLon);
+          const position = new Tmapv2.LatLng(lat, lon);
+
+          const marker = new Tmapv2.Marker({
+            position: position,
+            iconHTML: `<div class="custom-marker">${name}</div>`,
+            map: map
+          });
+
+          const addr = poi.newAddressList?.newAddress?.[0]?.fullAddressRoad || "주소 정보 없음";
+          const tel = poi.telNo || "전화 없음";
+          const type = poi.detailBizName || "업종 정보 없음";
+          const parking = poi.parkFlag === "1" ? "가능" : "불가";
+
+          marker.addListener("click", () => {
+            // 기존 InfoWindow 닫기
+            if (currentInfoWindow) currentInfoWindow.setMap(null);
+
+            const popupHtml = `
+              <div class="popup-content">
+                <strong style="font-size:15px;">${name}</strong><br/>
+                📍 ${addr}<br/>
+                ☎️ ${tel}<br/>
+                🩺 ${type}<br/>
+                🅿️ 주차: ${parking}<br/>
+                <button id="closeBtn-${index}">닫기</button>
+              </div>
+            `;
+
+            const infoWindow = new Tmapv2.InfoWindow({
+              position: new Tmapv2.LatLng(lat + 0.00025, lon),
+              content: popupHtml,
+              type: 2,
+              map: map
+            });
+
+            currentInfoWindow = infoWindow;
+
+            // 버튼 이벤트 바인딩은 약간 지연해서 실행
+            setTimeout(() => {
+              const closeBtn = document.getElementById(`closeBtn-${index}`);
+              if (closeBtn) {
+                closeBtn.onclick = (e) => {
+                  infoWindow.setMap(null);
+                  currentInfoWindow = null;
+                  e.stopPropagation();
+                };
+              }
+            }, 10);
+          });
+        });
+
+      } catch (err) {
+        console.error("❌ 오류 발생:", err);
+      }
+    }
+
+    searchClinics();
+  </script>
+</body>
+</html>

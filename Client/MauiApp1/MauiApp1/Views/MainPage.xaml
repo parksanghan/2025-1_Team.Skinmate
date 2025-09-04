@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="MauiApp1.Views.MainPage"
+             BackgroundColor="#E1EAF2">
+    <!-- 배너 배경색과 유사한 연한 하늘빛 -->
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30,0" Spacing="25" HorizontalOptions="Center">
+
+            <!-- 위치 아이콘 -->
+            <Button Text="📍내 주변 피부과 "
+                   Background="#BFD3E6"
+                   FontSize="20"
+                    CornerRadius="12"
+                   Margin="10,10,0,0"
+                   
+                   TextColor="#3A4757">
+                <!-- 진회색 -->
+                <Button.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnLocationClick"/>
+                </Button.GestureRecognizers>
+            </Button>
+
+            <!-- 배너 이미지 -->
+            <Image Source="banner.png"
+                   WidthRequest="300"
+                   HeightRequest="400"
+                   HorizontalOptions="Center"/>
+
+            <!-- 진단 버튼 -->
+            <Button Text="진단"
+                    ImageSource="exam_15360375.png"
+                    FontSize="20"
+                    TextColor="#2E3B4E"
+                    BackgroundColor="#BFD3E6"
+                    WidthRequest="290"
+                    HeightRequest="60"
+                    CornerRadius="12"
+                    Clicked="OnDiagnosisClick"/>
+
+            <!-- 챗봇 / 기록 버튼 -->
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+
+                <Button Text="챗봇"
+                        ImageSource="free_icon_chatbot.png"
+                        TextColor="#2E3B4E"
+                        BackgroundColor="#BFD3E6"
+                        WidthRequest="145"
+                        HeightRequest="60"
+                        CornerRadius="12"
+                        Clicked="OnChatClick"/>
+
+                <Button Text="기록"
+                        ImageSource="free_icon_diagnosis.png"
+                        TextColor="#2E3B4E"
+                        BackgroundColor="#BFD3E6"
+                        WidthRequest="145"
+                        HeightRequest="60"
+                        CornerRadius="12"
+                        Clicked="OnLogClick"/>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

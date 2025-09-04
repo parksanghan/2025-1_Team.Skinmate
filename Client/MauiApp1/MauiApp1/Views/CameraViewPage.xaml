@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:local="clr-namespace:MauiApp1.Views"
+             x:Class="MauiApp1.Views.CameraViewPage"
+             Title="CameraViewPage"
+             BackgroundColor="#E1EAF2">
+    <!-- 배경 컬러 변경 -->
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <!-- 전/후면 카메라 버튼 -->
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                <Button Text="카메라 후면"
+                        Clicked="RearBtnClicked"
+                        BackgroundColor="#BFD3E6"
+                        TextColor="#2E3B4E"
+                        CornerRadius="15"
+                        WidthRequest="140"
+                        Padding="10,6"/>
+                <Button Text="카메라 전면"
+                        Clicked="FrontBtnClicked"
+                        BackgroundColor="#BFD3E6"
+                        TextColor="#2E3B4E"
+                        CornerRadius="15"
+                        WidthRequest="140"
+                        Padding="10,6"/>
+            </HorizontalStackLayout>
+
+            <!-- 📷 CameraView -->
+            <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,30,30" HeightRequest="400">
+                <toolkit:CameraView 
+                    x:Name="cameraView"
+                    Grid.ColumnSpan="3" 
+                    Grid.Row="0" 
+                    SelectedCamera="{Binding SelectedCamera}"
+                    MediaCaptured="CameraView_MediaCaptured" />
+            </Grid>
+
+            <!-- 진단/캡처/갤러리 버튼 -->
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                <Button Text="진단"
+                        Clicked="SendBtnClicked"
+                        BackgroundColor="#BFD3E6"
+                        TextColor="#2E3B4E"
+                        CornerRadius="15"
+                        WidthRequest="100"
+                        Padding="10,6"/>
+                <Button Text="캡처"
+                        Clicked="CaptureBtnClicked"
+                        BackgroundColor="#BFD3E6"
+                        TextColor="#2E3B4E"
+                        CornerRadius="15"
+                        WidthRequest="100"
+                        Padding="10,6"/>
+                <Button Text="갤러리"
+                        Clicked="FileBtnClicked"
+                        BackgroundColor="#BFD3E6"
+                        TextColor="#2E3B4E"
+                        CornerRadius="15"
+                        WidthRequest="100"
+                        Padding="10,6"/>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

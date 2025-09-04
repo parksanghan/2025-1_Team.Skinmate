@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>TMAP 피부과 검색</title>
+    <script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=KnFx41yOtZRY1W20nnmw6SN1ERZqY396ZkH3TOQ4"></script>
+    <style>
+        .custom-marker {
+            position: relative;
+            display: inline-block;
+            background-color: #ffffff;
+            border: 2px solid #4285f4;
+            border-radius: 16px;
+            padding: 5px 10px;
+            font-size: 13px;
+            color: black;
+            white-space: nowrap;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .custom-marker::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            margin-left: -6px;
+            border-width: 6px;
+            border-style: solid;
+            border-color: #4285f4 transparent transparent transparent;
+        }
+
+        .custom-marker::before {
+            content: "";
+            position: absolute;
+            bottom: -9px;
+            left: 50%;
+            margin-left: -6px;
+            border-width: 6px;
+            border-style: solid;
+            border-color: #ffffff transparent transparent transparent;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align:center;">내 주변 피부과 찾기</h2>
+    <div id="map_div" style="width: 100%; height: 500px;"></div>
+
+    <script>
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return parseFloat(urlParams.get(name));
+        }
+
+        const lat = getQueryParam("lat") || 37.5665;
+        const lon = getQueryParam("lon") || 126.9780;
+
+        const map = new Tmapv2.Map("map_div", {
+            center: new Tmapv2.LatLng(lat, lon),
+            width: "100%",
+            height: "500px",
+            zoom: 15
+        });
+
+        // 내 위치 마커
+        new Tmapv2.Marker({
+            position: new Tmapv2.LatLng(lat, lon),
+            iconHTML: `<div class="custom-marker" style="border-color:#ff3b30;color:#ff3b30;">내 위치</div>`,
+            map: map
+        });
+
+        async function searchClinics() {
+            const keyword = encodeURIComponent("피부과");
+            const url = `https://apis.openapi.sk.com/tmap/pois?version=1&searchKeyword=${keyword}&searchType=all&searchtypCd=R&page=1&count=30&reqCoordType=WGS84GEO&resCoordType=WGS84GEO&centerLon=${lon}&centerLat=${lat}&radius=5`;
+
+            try {
+                const response = await fetch(url, {
+                    method: "GET",
+                    headers: {
+                        "Accept": "application/json",
+                        "appKey": "KnFx41yOtZRY1W20nnmw6SN1ERZqY396ZkH3TOQ4"
+                    }
+                });
+
+                if (!response.ok) throw new Error(`API 호출 실패: ${response.status}`);
+
+                const data = await response.json();
+                const pois = data.searchPoiInfo?.pois?.poi || [];
+
+                pois.forEach(poi => {
+                    const name = poi.name;
+                    if (name.includes("주차장")) return; // 🔥 "주차장" 포함 시 무시
+
+                    const baseLat = parseFloat(poi.frontLat);
+                    const baseLon = parseFloat(poi.frontLon);
+                    const offsetLat = baseLat + (Math.random() - 0.5) * 0.0003;
+                    const position = new Tmapv2.LatLng(offsetLat, baseLon);
+
+                    new Tmapv2.Marker({
+                        position: position,
+                        iconHTML: `<div class="custom-marker">${name}</div>`,
+                        map: map
+                    });
+                });
+            } catch (err) {
+                console.error("❌ 오류 발생:", err);
+            }
+        }
+
+        searchClinics();
+    </script>
+</body>
+</html>

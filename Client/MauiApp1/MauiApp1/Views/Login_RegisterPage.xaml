@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Views.Login_RegisterPage"
+             Title="Login_RegisterPage"
+             BackgroundColor="#E1EAF2">
+
+    <VerticalStackLayout Padding="30" Spacing="20" HorizontalOptions="Center">
+
+        <Label Text="로그인 및 가입"
+               FontSize="32"
+               TextColor="#2E3B4E"
+               HorizontalOptions="Center" />
+
+        <Entry x:Name="usernameEntry"
+               Placeholder="아이디 입력"
+               TextColor="#2E3B4E"
+               PlaceholderColor="#859AB3"
+               BackgroundColor="White"
+               WidthRequest="250" />
+
+        <Entry x:Name="passwordEntry"
+               Placeholder="비밀번호 입력"
+               IsPassword="True"
+               TextColor="#2E3B4E"
+               PlaceholderColor="#859AB3"
+               BackgroundColor="White"
+               WidthRequest="250" />
+
+        <Button Text="로그인"
+                Clicked="OnLoginClicked"
+                BackgroundColor="#BFD3E6"
+                TextColor="#2E3B4E"
+                WidthRequest="250"
+                CornerRadius="12" />
+
+ 
+
+        <Button Text="가입"
+                Clicked="OnRegisterClicked"
+                BackgroundColor="#BFD3E6"
+                TextColor="#2E3B4E"
+                WidthRequest="250"
+                CornerRadius="12" />
+
+        <Label x:Name="messageLabel"
+               TextColor="Red"
+               HorizontalOptions="Center"
+               FontSize="14" />
+
+    </VerticalStackLayout>
+</ContentPage>

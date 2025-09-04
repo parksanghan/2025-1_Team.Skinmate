@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Class="MauiApp1.Views.Content.CategoryPopup"
+ >
+  <Grid BackgroundColor="#80000000">
+
+    <VerticalStackLayout
+        Padding="20"
+        BackgroundColor="Gray"
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        WidthRequest="300"
+       
+        Spacing="10">
+
+        <Label Text="관심사를 선택하세요!" FontSize="18" HorizontalOptions="Center" />
+
+        <VerticalStackLayout x:Name="CategoryContainer" />
+
+        <Button Text="확인" Clicked="OnConfirmClicked" BackgroundColor="LightBlue"/>
+
+    </VerticalStackLayout>
+    </Grid>
+</toolkit:Popup>

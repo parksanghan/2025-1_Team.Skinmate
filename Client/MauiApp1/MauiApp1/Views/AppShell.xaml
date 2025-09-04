@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MauiApp1.Views.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MauiApp1.Views"
+    Shell.FlyoutBehavior="Disabled"
+    Title="MauiApp1"
+    
+    Shell.BackgroundColor="#E1EAF2"
+    Shell.TitleColor="#3A4757"
+    Shell.ForegroundColor="#3A4757"
+    Shell.TabBarBackgroundColor="#E1EAF2"
+    Shell.TabBarTitleColor="#3A4757"
+    Shell.TabBarUnselectedColor="#859AB3" 
+ 
+    >
+    
+    <!-- 햄버거 메뉴바 부분
+     <FlyoutItem >
+     <ShellContent
+      Title="Home"
+      ContentTemplate="{DataTemplate local:MainPage}"
+      Route="MainPage" />
+     <ShellContent
+      Title="진단"
+      ContentTemplate="{DataTemplate local:CameraViewPage}"
+      Route="CameraViewPage"
+      />
+     <ShellContent
+      Title="챗봇"
+      ContentTemplate="{DataTemplate local:ChatViewPage}"
+      Route="ChatViewPage"
+      />
+     <ShellContent
+      Title="기록"
+      ContentTemplate="{DataTemplate local:HistoryViewPage}"
+      Route="HistoryViewPage"
+      />
+
+ </FlyoutItem>
+    -->
+    
+    <!--
+    app.cs에서 appshell 을 호출하는 형태가아닌 loginpage 먼저 호출하고 로그인 완료 뒤
+    appshell로 이동하는 형태 
+    shellcontent의 동작방식은 여러개의 toolbar같은 걸 호출할 수 있는데 
+    이때 첫페이지는 첫번째 컨텐츠가 먼저 로드됨 
+    -->
+    
+    <TabBar>
+        <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage" />
+        <ShellContent
+            Title="진단"
+            ContentTemplate="{DataTemplate local:CameraViewPage}"
+            Route="CameraViewPage"
+            />
+        <ShellContent
+            Title="챗봇"
+            ContentTemplate="{DataTemplate local:ChatViewPage}"
+            Route="ChatViewPage"
+            />
+        <ShellContent
+            Title="기록"
+            ContentTemplate="{DataTemplate local:HistoryViewPage}"
+            Route="HistoryViewPage"
+            />
+       
+    </TabBar>
+
+
+</Shell>
