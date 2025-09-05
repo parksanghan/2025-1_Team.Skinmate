@@ -4,27 +4,29 @@
 
 ## 개발환경
 
+### 백엔드 서버 (.NET)
 | 구분 | 기술 | 버전 번호 |
 | --- | --- | --- |
-| 백엔드 서버 | Python | 3.9.13 |
-| 백엔드 서버 | FastAPI | 0.115.12 |
-| 백엔드 서버 | Uvicorn | 0.34.0 |
-| 백엔드 서버 | Starlette | 0.46.1 |
-| 백엔드 서버 | PyTorch | **2.1.0** |
-| 백엔드 서버 | TorchVision | (PyTorch 2.1.0 호환) |
-| 백엔드 서버 | MediaPipe | 0.10.21 |
-| 백엔드 서버 | OpenCV | 4.11.0.86 |
-| 백엔드 서버 | NumPy | 1.26.4 |
-| 백엔드 서버 | Python-Multipart | 0.0.20 |
-| 백엔드 서버 | Pydantic | 2.11.3 |
-| 백엔드 서버 | Supabase Python SDK | 2.15.0 |
-| 백엔드 서버 | storage3 | 0.11.3 |
-| 백엔드 서버 | postgrest | 1.0.1 |
-| 백엔드 서버 | python-dotenv | 1.1.0 |
+| 백엔드 서버 (.NET) | **.NET SDK** | **9.0.304** |
+| 백엔드 서버 (.NET) | **ASP.NET Core** | 9.0.x (SDK 9.0.304 포함) |
+| 백엔드 서버 (.NET) | **Entity Framework Core CLI** | **9.0.8** |
+| 백엔드 서버 (.NET) | EF Core SqlServer Provider | 9.0.x |
+| 백엔드 서버 (.NET) | BCrypt.Net-Next | (프로젝트 적용 버전) |
+| 백엔드 서버 (.NET) | Swashbuckle.AspNetCore (Swagger) | (선택) |
 
+### 데이터베이스 / 개발도구
 | 구분 | 기술 | 버전 번호 |
 | --- | --- | --- |
-| **프론트엔드 앱** | .NET MAUI SDK | 9.0.14 |
+| 데이터베이스 | **Microsoft SQL Server** | **2019 (15.x)** |
+| IDE | **Visual Studio 2022** | **17.12.2** |
+| 형상관리/에디터 | Git / VS Code | (설치 버전) |
+
+---
+
+### 프론트엔드 앱 (.NET MAUI)
+| 구분 | 기술 | 버전 번호 |
+| --- | --- | --- |
+| **프론트엔드 앱** | **.NET MAUI SDK** | 9.0.14 |
 | **프론트엔드 앱** | Microsoft.NETCore.App.Runtime | 9.0.3.0 |
 | **프론트엔드 앱** | Microsoft ASP.NET Core Runtime | 9.0.3.25112 |
 | **프론트엔드 앱** | Microcharts | 1.0 |
@@ -32,7 +34,26 @@
 | **프론트엔드 앱** | Syncfusion.Maui | 29.2.7 |
 | **프론트엔드 앱** | SkiaSharp | 3.119.0 |
 | **프론트엔드 앱** | TMAP OpenAPI | Web SDK 기반 사용 |
-| 개발 | visual studio 2022 | 17.3 |
+
+---
+
+### (선택) AI 추론 서버 (Python)  
+> 현재 백엔드는 ASP.NET Core로 전환되었으며, 아래 파이썬 항목은 **추론 서버를 별도로 운용할 때만** 유지하세요. (미사용 시 본 섹션 삭제)
+
+| 구분 | 기술 | 버전 번호 |
+| --- | --- | --- |
+| 추론 서버 | Python | 3.9.13 |
+| 추론 서버 | FastAPI | 0.115.12 |
+| 추론 서버 | Uvicorn | 0.34.0 |
+| 추론 서버 | Starlette | 0.46.1 |
+| 추론 서버 | **PyTorch** | **2.1.0** |
+| 추론 서버 | TorchVision | (PyTorch 2.1.0 호환) |
+| 추론 서버 | MediaPipe | 0.10.21 |
+| 추론 서버 | OpenCV | 4.11.0.86 |
+| 추론 서버 | NumPy | 1.26.4 |
+| 추론 서버 | Python-Multipart | 0.0.20 |
+| 추론 서버 | Pydantic | 2.11.3 |
+ 
 
 ## 프로젝트 설명
 
