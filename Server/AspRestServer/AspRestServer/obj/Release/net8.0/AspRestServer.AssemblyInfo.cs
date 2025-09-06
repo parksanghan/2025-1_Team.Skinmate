@@ -11,15 +11,14 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("MauiApp1")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("1e8d4eac-e7a9-4183-bcda-9e354a6221a9")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("AspRestServer")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+05d3a9673f508ef3141bd33a5991fdd6a6b3f6d4")]
-[assembly: System.Reflection.AssemblyProductAttribute("MauiApp1")]
-[assembly: System.Reflection.AssemblyTitleAttribute("MauiApp1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyProductAttribute("AspRestServer")]
+[assembly: System.Reflection.AssemblyTitleAttribute("AspRestServer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
-[assembly: System.Runtime.Versioning.TargetPlatformAttribute("MacCatalyst18.5")]
-[assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("MacCatalyst15.0")]
 
 // MSBuild WriteCodeFragment 클래스에서 생성되었습니다.
 

@@ -1,0 +1,116 @@
+﻿
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>TMAP 지도에 대중교통 경로 표시</title>
+    <script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=xPuYQb13om3iPsmS3TAfZ8RmN6p0c7Sm9u0DyO0a"></script>
+    <style>
+        #map_div {
+            width: 100%;
+            height: 600px;
+        }
+    </style>
+</head>
+<body>
+    <div id="map_div"></div>
+    <script>
+        var map = new Tmapv2.Map("map_div", {
+            center: new Tmapv2.LatLng(37.555162, 126.936928), // 신촌역 중심
+            width: "100%",
+            height: "600px",
+            zoom: 14
+        });
+
+        // 🚀 TMAP 대중교통 API 호출
+        fetch("https://apis.openapi.sk.com/transit/routes", {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "appKey": "0BeLxmPc2W5oaSlKBNJsm5bIToGiFaSq7x8vhu7Y"
+            },
+            body: JSON.stringify({
+                "startX": "126.936928",
+                "startY": "37.555162",
+                "endX": "127.029281",
+                "endY": "37.564436"
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log("API 응답 데이터:", data); // API 응답 확인
+
+                let path = [];
+
+                // 🚀 API 응답에서 경로 데이터 추출
+                if (data.metaData.plan.itineraries.length > 0) {
+                    data.metaData.plan.itineraries[0].legs.forEach(leg => {
+                        let legPath = [];
+
+                        if (leg.passShape && leg.passShape.linestring) {
+                            let coords = leg.passShape.linestring.split(" ");
+                            coords.forEach(coord => {
+                                let [lon, lat] = coord.split(",");
+                                legPath.push(new Tmapv2.LatLng(parseFloat(lat), parseFloat(lon)));
+                            });
+                        }
+
+                        // 🚶 도보: 파란색 경로
+                        if (leg.mode === "WALK") {
+                            new Tmapv2.Polyline({
+                                path: legPath,
+                                strokeColor: "#0000FF",
+                                strokeWeight: 3,
+                                map: map
+                            });
+                        }
+                        // 🚍 버스: 초록색 경로
+                        else if (leg.mode === "BUS") {
+                            new Tmapv2.Polyline({
+                                path: legPath,
+                                strokeColor: "#00FF00",
+                                strokeWeight: 5,
+                                map: map
+                            });
+
+                            // 🏁 정류장 마커 추가
+                            leg.passStopList.stationList.forEach(station => {
+                                new Tmapv2.Marker({
+                                    position: new Tmapv2.LatLng(parseFloat(station.lat), parseFloat(station.lon)),
+                                    map: map,
+                                    label: `<div style="background: white; padding: 3px; border-radius: 3px;">🚌 ${station.stationName}</div>`
+                                });
+                            });
+                        }
+                        // 🚇 지하철: 빨간색 경로
+                        else if (leg.mode === "SUBWAY") {
+                            new Tmapv2.Polyline({
+                                path: legPath,
+                                strokeColor: "#FF0000",
+                                strokeWeight: 5,
+                                map: map
+                            });
+
+                            // 🚉 지하철역 마커 추가
+                            new Tmapv2.Marker({
+                                position: new Tmapv2.LatLng(parseFloat(leg.start.lat), parseFloat(leg.start.lon)),
+                                map: map,
+                                label: `<div style="background: white; padding: 3px; border-radius: 3px;">🚉 ${leg.start.name}</div>`
+                            });
+
+                            new Tmapv2.Marker({
+                                position: new Tmapv2.LatLng(parseFloat(leg.end.lat), parseFloat(leg.end.lon)),
+                                map: map,
+                                label: `<div style="background: white; padding: 3px; border-radius: 3px;">🚉 ${leg.end.name}</div>`
+                            });
+                        }
+                    });
+                } else {
+                    console.error("경로 데이터가 없습니다.");
+                }
+            })
+            .catch(error => console.error("API 호출 오류:", error));
+    </script>
+</body>
+</html>

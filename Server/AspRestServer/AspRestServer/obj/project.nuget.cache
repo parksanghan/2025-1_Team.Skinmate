@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EDeNJ9Fg3OI=",
+  "dgSpecHash": "/B9k8E5QZBQ=",
   "success": true,
-  "projectFilePath": "C:\\Users\\snagh\\source\\repos\\AspRestServer\\AspRestServer\\AspRestServer.csproj",
+  "projectFilePath": "C:\\2025-1_Team.Skinmate\\2025-1_Team.Skinmate\\Server\\AspRestServer\\AspRestServer\\AspRestServer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\snagh\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\snagh\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

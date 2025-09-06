@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AspRestServer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+05d3a9673f508ef3141bd33a5991fdd6a6b3f6d4")]
 [assembly: System.Reflection.AssemblyProductAttribute("AspRestServer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AspRestServer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -3289,11 +3289,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\snagh\\source\\repos\\AspRestServer\\AspRestServer\\AspRestServer.csproj",
+      "projectUniqueName": "C:\\2025-1_Team.Skinmate\\2025-1_Team.Skinmate\\Server\\AspRestServer\\AspRestServer\\AspRestServer.csproj",
       "projectName": "AspRestServer",
-      "projectPath": "C:\\Users\\snagh\\source\\repos\\AspRestServer\\AspRestServer\\AspRestServer.csproj",
+      "projectPath": "C:\\2025-1_Team.Skinmate\\2025-1_Team.Skinmate\\Server\\AspRestServer\\AspRestServer\\AspRestServer.csproj",
       "packagesPath": "C:\\Users\\snagh\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\snagh\\source\\repos\\AspRestServer\\AspRestServer\\obj\\",
+      "outputPath": "C:\\2025-1_Team.Skinmate\\2025-1_Team.Skinmate\\Server\\AspRestServer\\AspRestServer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

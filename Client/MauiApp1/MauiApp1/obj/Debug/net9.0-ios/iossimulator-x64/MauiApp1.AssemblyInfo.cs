@@ -14,11 +14,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MauiApp1")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+cbeed5355ee5bb2a6c687358e6282e4cde35116f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+05d3a9673f508ef3141bd33a5991fdd6a6b3f6d4")]
 [assembly: System.Reflection.AssemblyProductAttribute("MauiApp1")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MauiApp1")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
-[assembly: System.Runtime.Versioning.TargetPlatformAttribute("iOS18.2")]
+[assembly: System.Runtime.Versioning.TargetPlatformAttribute("iOS18.5")]
 [assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("iOS15.0")]
 
 // MSBuild WriteCodeFragment 클래스에서 생성되었습니다.

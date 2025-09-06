@@ -32,7 +32,7 @@ public partial class MyAppDbContext : DbContext
             entity.Property(e => e.ChatId).HasColumnName("chat_id");
             entity.Property(e => e.DiagnosisResult).HasColumnName("diagnosis_result");
             entity.Property(e => e.ImagePath)
-                .HasMaxLength(512)
+                .HasMaxLength(512)  
                 .IsUnicode(false)
                 .HasColumnName("image_path");
             entity.Property(e => e.LogType)
