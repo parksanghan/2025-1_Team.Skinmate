@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PDBModelStoreContainer" CdmEntityContainer="PDBEntities">
+    <EntitySetMapping Name="Chat_Logs">
+      <EntityTypeMapping TypeName="PDBModel.Chat_Logs">
+        <MappingFragment StoreEntitySet="Chat_Logs">
+          <ScalarProperty Name="chat_id" ColumnName="chat_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="log_type" ColumnName="log_type" />
+          <ScalarProperty Name="image_path" ColumnName="image_path" />
+          <ScalarProperty Name="diagnosis_result" ColumnName="diagnosis_result" />
+          <ScalarProperty Name="message" ColumnName="message" />
+          <ScalarProperty Name="response" ColumnName="response" />
+          <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="PDBModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

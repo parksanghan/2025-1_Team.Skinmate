@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Chat_Logs">
+    <Key>
+      <PropertyRef Name="chat_id" />
+    </Key>
+    <Property Name="chat_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="log_type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="image_path" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="diagnosis_result" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="response" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="timestamp" Type="DateTime" Precision="7" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_ChatLogs_Users" FromRole="Chat_Logs" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="63" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="63" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Chat_Logs" Relationship="Self.FK_ChatLogs_Users" FromRole="Users" ToRole="Chat_Logs" />
+  </EntityType>
+  <Association Name="FK_ChatLogs_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Chat_Logs" Type="Self.Chat_Logs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Chat_Logs">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Chat_Logs" EntityType="Self.Chat_Logs" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <AssociationSet Name="FK_ChatLogs_Users" Association="Self.FK_ChatLogs_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Chat_Logs" EntitySet="Chat_Logs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

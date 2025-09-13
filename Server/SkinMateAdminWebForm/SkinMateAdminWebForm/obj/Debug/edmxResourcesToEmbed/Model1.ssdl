@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Chat_Logs">
+    <Key>
+      <PropertyRef Name="chat_id" />
+    </Key>
+    <Property Name="chat_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="log_type" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="image_path" Type="nvarchar" MaxLength="255" />
+    <Property Name="diagnosis_result" Type="nvarchar(max)" />
+    <Property Name="message" Type="nvarchar(max)" />
+    <Property Name="response" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="timestamp" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="63" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="63" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ChatLogs_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Chat_Logs" Type="Self.Chat_Logs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Chat_Logs">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PDBModelStoreContainer">
+    <EntitySet Name="Chat_Logs" EntityType="Self.Chat_Logs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ChatLogs_Users" Association="Self.FK_ChatLogs_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Chat_Logs" EntitySet="Chat_Logs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
