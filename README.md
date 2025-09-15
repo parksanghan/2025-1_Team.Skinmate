@@ -87,7 +87,7 @@
 - **Backend**: Python, FastAPI, Uvicorn, Supabase
 - **AI Model**: PyTorch, torchvision, ResNet50, MediaPipe
 - **Frontend (앱)**: .NET MAUI, C#, CommunityToolkit.MAUI, Microcharts
-- **Database**: Supabase PostgreSQL
+- **Database**: MS-SQL
 - **Mobile/PC 연동**: CameraView, Android Camera2 API (ML Kit), .NET MAUI Multi-platform Support
 - **Build Tools**: pip, dotnet CLI
 - **Version Control**: Git, GitHub
